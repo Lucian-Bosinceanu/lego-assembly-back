@@ -6,17 +6,18 @@ from src.graphs import *
 from src.generation import *
 
 if __name__ == "__main__":
-    # ui()
-    # read_file()
-    # input_validation()
-    # convert_input()
+    # UI()
+    # bytes = read_file()
+    # format = convert_input(bytes)
+    # input_validation(format)
     #
     # done = False
-    # while !done:
-    #     generate()
-    #     graph_creation()
-    #     done = graph_validation()
+    # graph = None
+    # while not done:
+    #     generated = generate()
+    #     graph = graph_creation(generated)
+    #     done = graph_validation(graph)
     #
-    # convert_graph()
-    # write_file()
+    # output = convert_graph(graph)
+    # write_file(output)
     exit()

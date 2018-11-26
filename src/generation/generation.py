@@ -1,2 +1,2 @@
-def generation():
+def generate():
     pass

@@ -1,1 +1,3 @@
-__all__ = ["generation"]
+from .generation import generate
+
+__all__ = ["generate"]
