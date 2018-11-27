@@ -6,12 +6,10 @@ from src.graphs import *
 from src.generation import *
 
 if __name__ == "__main__":
-    shape = read_file()
-    # print(shape)
     # UI()
-    # bytes = read_file()
-    # format = convert_input(bytes)
-    # input_validation(format)
+    shape = Model(read_file())
+    # print(shape)
+    input_validation(shape)
     #
     # done = False
     # graph = None
