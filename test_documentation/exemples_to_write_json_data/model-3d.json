@@ -1,0 +1,10 @@
+{
+    "cubes": [ // un array care contine descrieri de cuburi
+        {   //fiecare cub are 3 coordonate. Acestea au valori numere naturale: 
+            "x": 0, //axa Ox din planul cartezian
+            "y": 4, //inaltimea
+            "z": 7, //axa Oy din planul cartezian
+            "color": "#123ABC" //index-ul culorii cubului. Poate fi null, caz in care este culoarea default (alb)
+        }
+    ] 
+}
