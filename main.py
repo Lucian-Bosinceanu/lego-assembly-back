@@ -8,7 +8,11 @@ from src.generation import *
 if __name__ == "__main__":
     # UI()
     shape = Model(read_file())
+<<<<<<< HEAD
+    print(shape)
+=======
     # print(shape)
+>>>>>>> c15c5771970befcbf58be89a7ec2034daef851d0
     input_validation(shape)
     #
     # done = False
