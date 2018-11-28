@@ -1,0 +1,5 @@
+ There are examples of json datas which can be provided from frontend and sends to backend.
+- every figures/forms contain 1 or n cubes which will have the same size (1 unity)
+- the orgin cube is required, and has the coordinates x=0, y=0, z=0;
+- every element from json's array represent the coordinates of a cube + a color
+- "null" for color field represent by default "white", otherwise it's a hexa-code for that color
