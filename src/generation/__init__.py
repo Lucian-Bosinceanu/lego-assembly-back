@@ -1,3 +1,3 @@
-from .generation import generate
+from .merge_cubes import merge_cubes
 
-__all__ = ["generate"]
+__all__ = ["merge_cubes"]
