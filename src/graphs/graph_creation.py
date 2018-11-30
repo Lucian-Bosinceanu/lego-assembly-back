@@ -1,4 +1,10 @@
 from .graph import Graph
 
-def graph_creation():
+
+# Idea for creation :
+# Iterate through the shape, for each node define :
+#   - A list of neighbours (by index)
+#   - coordinates and color (model)
+
+def graph_creation(graph):
     pass

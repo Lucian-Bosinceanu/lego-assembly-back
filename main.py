@@ -10,13 +10,14 @@ if __name__ == "__main__":
     shape = Model(read_file())
     print(shape)
     input_validation(shape)
-    #
+
     # done = False
     # graph = None
-    # while not done:
-    #     generated = generate()
-    #     graph = graph_creation(generated)
-    #     done = graph_validation(graph)
+    # while not done:                       # while the final structure still isn't right
+    #     merged = merge_cubes(shape)       # merge the input from file, creating a basic lego structure
+    #     graph = graph_creation(merged)    # create the graph based on the merged structure
+    #     graph_optimization(graph,shape)   # remove weak articulation points, merge eventual subgraphs
+    #     done = graph_validation(graph)    # if graph is stable, we can stop
     #
     # output = convert_graph(graph)
     # write_file(output)
