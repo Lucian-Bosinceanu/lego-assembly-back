@@ -27,9 +27,9 @@ def read_file():
             if "z" not in cube:
                 sys.exit("Z coordinate missing from cube");
             if cube["x"] < 0 and cube["x"] < minX:
-                minX = cube.x
+                minX = cube["x"]
             if cube["z"] < 0 and cube["z"] < minZ:
-                minZ = cube.z
+                minZ = cube["z"]
         id = 0
         for cube in jsonData["cubes"]:
             if minX < 0:
