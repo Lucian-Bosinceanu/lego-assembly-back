@@ -76,8 +76,8 @@ def classify(x, y, z):
         max_z = max(shape["like"], key=lambda x: x[2])[2]
         variations = [
             [
-                [search(x + position[0] + xprime, y + position[1] - yprime, z + position[2] - zprime) for position in shape["like"]],
-                [search(x + position[2] + xprime, y + position[1] - yprime, z + position[0] - zprime) for position in shape["like"]],
+                [search(x + position[0] - xprime, y + position[1] - yprime, z + position[2] - zprime) for position in shape["like"]],
+                [search(x + position[2] - xprime, y + position[1] - yprime, z + position[0] - zprime) for position in shape["like"]],
                 [search(x - position[0] - xprime, y + position[1] - yprime, z - position[2] - zprime) for position in shape["like"]],
                 [search(x - position[2] - xprime, y + position[1] - yprime, z - position[0] - zprime) for position in shape["like"]]
             ]
