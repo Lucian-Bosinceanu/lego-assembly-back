@@ -7,8 +7,6 @@ class Model:
     def __init__(self, cubes):
         self.cubes = cubes
         self.piece_size = dict()
-        for qb in cubes:
-            self.piece_size[qb.id] = 1
     
     def __str__(self):
         modelToStr = ""

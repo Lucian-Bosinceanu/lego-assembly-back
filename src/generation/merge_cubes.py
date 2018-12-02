@@ -18,7 +18,7 @@ def pick_random_coordinate(randrange):
     return x, y, z
 
 
-def pick_random_cube(shape: model) -> Tuple[cube, tuple]:
+def pick_random_cube(shape: model):
     coord = pick_random_coordinate(len(shape.cubes))
 
     while not shape.has_cube_at(coord[0], coord[1], coord[2]):
@@ -31,14 +31,14 @@ def can_be_merged(cube1: cube, cube2: cube) -> bool:
     return cube1.id != cube2.id and cube1.color == cube2.color 
 
 
-def get_neighbor_set_for_cube(cube_data: Tuple[cube, tuple], shape: model):
+def get_neighbor_set_for_cube(cube_data, shape):
     neighbor_set = []
     
     data = cube_data[0]
     coord = cube_data[1]
 
     for direction in DIRECTIONS:
-        neighbor = (coord[0] + direction[0], coord[1] + direction[1], coord[2])
+        neighbor = (coord[0] + direction[0], coord[1], coord[2] + direction[1])
 
         if shape.has_cube_at(neighbor[0], neighbor[1], neighbor[2]) and \
                 can_be_merged(data, shape.cubes[neighbor[0]][neighbor[1]][neighbor[2]]):
