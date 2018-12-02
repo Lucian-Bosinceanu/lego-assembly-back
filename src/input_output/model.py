@@ -7,6 +7,10 @@ class Model:
     def __init__(self, cubes):
         self.cubes = cubes
         self.piece_size = dict()
+        for x in self.cubes:
+            for y in self.cubes[x]:
+                for z in self.cubes[x][y]:
+                    self.piece_size[self.cubes[x][y][z].id] = 1
     
     def __str__(self):
         modelToStr = ""

@@ -31,7 +31,7 @@ def can_be_merged(cube1: cube, cube2: cube) -> bool:
     return cube1.id != cube2.id and cube1.color == cube2.color 
 
 
-def get_neighbor_set_for_cube(cube_data, shape):
+def get_neighbor_set_for_cube(cube_data: (cube, tuple), shape: model):
     neighbor_set = []
     
     data = cube_data[0]
@@ -48,7 +48,7 @@ def get_neighbor_set_for_cube(cube_data, shape):
 
 
 def piece_greater_than(cube1: tuple, cube2: tuple, shape: model):
-    return shape.piece_size[shape.get_cube_at(cube1)] > shape.piece_size[shape.get_cube_at(cube2)]
+    return shape.piece_size[shape.get_cube_at(cube1).id] > shape.piece_size[shape.get_cube_at(cube2).id]
 
 
 def find_largest_neighbor_in_set(neighbor_set: [], shape: model):
@@ -62,10 +62,11 @@ def find_largest_neighbor_in_set(neighbor_set: [], shape: model):
 
 
 def merge_bricks(cube1: tuple, cube2: tuple, shape: model):
+
     if piece_greater_than(cube1, cube2, shape):
-        cube1.id = cube2.id
+        shape.get_cube_at(cube1).id = shape.get_cube_at(cube2).id
     else:
-        cube2.id = cube1.id
+        shape.get_cube_at(cube2).id = shape.get_cube_at(cube1).id
 
 
 def merge_cubes(shape: model):
