@@ -1,3 +1,4 @@
 class Graph:
-    def __init__(self):
-        pass
+    def __init__(self, nodes):
+        self.nodes = nodes
+        
