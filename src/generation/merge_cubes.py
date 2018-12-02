@@ -72,4 +72,4 @@ def merge_cubes(shape: model):
     rand_cube = pick_random_cube(shape)
     neighbors = get_neighbor_set_for_cube(rand_cube, shape)
     largest_neighbor = find_largest_neighbor_in_set(neighbors, shape)
-    merge_bricks(rand_cube[1], largest_neighbor, shape)
+    merge_bricks(rand_cube[1], largest_neighbor, shape) 
