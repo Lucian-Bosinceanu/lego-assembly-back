@@ -1,3 +1,5 @@
+from math import sqrt
+
 class Model:
     def __init__(self, cubes):
         self.cubes = cubes
@@ -10,6 +12,6 @@ class Model:
         return modelToStr
     def __repr__(self):
         return str(self)
-    def distFrom(x1, y1, z1, x2, y2, z2):
+    def distFrom(self,x1, y1, z1, x2, y2, z2):
         return sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2)
     
