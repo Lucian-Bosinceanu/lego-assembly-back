@@ -24,7 +24,7 @@ def create_json(count):
 	f.write(']\n}\n')
 	f.close()
 
-create_json(2)
+create_json(5001)
 
 
 print("merge")
