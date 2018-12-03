@@ -57,18 +57,18 @@ def graph_validation(connections, limit):
         return True
     return False
 
-modelGraph = {
-    1: {1, 2, 3, 9},
-    2: {1, 4, 9},
-    3: {1, 4, 5},
-    4: {2, 3},
-    5: {3, 6, 7, 8},
-    6: {5},
-    7: {5},
-    8: {5},
-    9: {
-        1, 2
-    }
-}
-print(graph_validation(modelGraph, 3))
+# modelGraph = {
+#     1: {1, 2, 3, 9},
+#     2: {1, 4, 9},
+#     3: {1, 4, 5},
+#     4: {2, 3},
+#     5: {3, 6, 7, 8},
+#     6: {5},
+#     7: {5},
+#     8: {5},
+#     9: {
+#         1, 2
+#     }
+# }
+# print(graph_validation(modelGraph, 3))
 # python src/graphs/graph_validation.py
