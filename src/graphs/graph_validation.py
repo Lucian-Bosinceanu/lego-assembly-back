@@ -36,14 +36,14 @@ def graph_validation(connections):
     return False
 
 modelGraph = {
-    "1": [1, 2, 3],
-    "2": [1, 4],
-    "3": [1, 4, 5],
-    "4": [2, 3],
-    "5": [3, 6, 7, 8],
-    "6": [5],
-    "7": [5],
-    "8": [5]
+    "1": {1, 2, 3},
+    "2": {1, 4},
+    "3": {1, 4, 5},
+    "4": {2, 3},
+    "5": {3, 6, 7, 8},
+    "6": {5},
+    "7": {5},
+    "8": {5}
 }
 print(graph_validation(modelGraph))
 # python src/graphs/graph_validation.py
