@@ -8,8 +8,8 @@ from src.generation import *
 if __name__ == "__main__":
     # UI()
     shape = Model(read_file())
-    print(shape)
     input_validation(shape)
+    print(shape)
 
     # done = False
     # graph = None
