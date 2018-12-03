@@ -43,7 +43,7 @@ def graph_validation(connections, limit):
 
         currentNode = 1
         while currentNode < len(connectionsKeys):
-            visitedNodes = DFS(1, connectionsKeys[currentNode])
+            visitedNodes = DFS(connectionsKeys[0], connectionsKeys[currentNode])
             if len(visitedNodes) != len(connectionsKeys) - 1:
                 weakPoints.append(connectionsKeys[currentNode])
             currentNode += 1
