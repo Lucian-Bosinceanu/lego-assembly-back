@@ -2,13 +2,15 @@ import json
 import sys
 import os
 
+from collections import OrderedDict
 from cubedata import CubeData
 
 def write_file():
   #import the standard pieces  
   with open("scLego.json", 'r') as file:
     standardPieces = json.load(file)
-  cubes = {'1': {'1':  {'1':  CubeData('red',1)}},'2':{ '1': { '1': CubeData('red',1)} }} #a example of dictionary
+  cubes = {'1': {'1':  {'1':  CubeData('red',1)}, '0': { '0': CubeData('red',2)} },'2':{ '1': { '1': CubeData('red',1)} },
+          '0': {'0':  {'0':  CubeData('red',2)}}} #a example of dictionary
   #create a new dictionary where the key is the id + color and the value is a tuple of coordinates
   dictionary= dict()
   for x in cubes:
@@ -48,9 +50,13 @@ def write_file():
                 usedPieces['pieces'].append(standardPieces["pieces"][piece])   
               dictionary[key+'-'+standardPieces["pieces"][piece]["name"]+'-'+rotation] = dictionary.pop(key)
               
- #sort the tuples by y,x,z  
+ #sort the tuples by y,x,z to get the coordonates of the piece 
   for key in dictionary:
     dictionary[key].sort(key=lambda x: (x[1],x[0],x[2]))
+
+ #sort the dictionary to build the sculpture bottom-up
+  newDictionary= OrderedDict(sorted(dictionary.items(), key=lambda x: x[1][0]))
+  dictionary=dict(newDictionary)  
   
   orderPieces= dict()
   orderPieces['order']=[]
