@@ -91,5 +91,3 @@ def merge_cubes(model: model):
                 recognisedShapes.append(result)
 
     return recognisedShapes
-
-            
