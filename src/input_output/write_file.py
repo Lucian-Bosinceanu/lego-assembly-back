@@ -5,12 +5,10 @@ import os
 from collections import OrderedDict
 from cubedata import CubeData
 
-def write_file():
+def write_file(cubes):
   #import the standard pieces  
   with open("scLego.json", 'r') as file:
     standardPieces = json.load(file)
-  cubes = {'1': {'1':  {'1':  CubeData('red',1)}, '0': { '0': CubeData('red',2)} },'2':{ '1': { '1': CubeData('red',1)} },
-          '0': {'0':  {'0':  CubeData('red',2)}}} #a example of dictionary
   #create a new dictionary where the key is the id + color and the value is a tuple of coordinates
   dictionary= dict()
   for x in cubes:
@@ -82,5 +80,3 @@ def write_file():
   JsonOutput = open("JsonOutput.json","w+") 
   JsonOutput.write(json_string) 
   JsonOutput.close() 
-
-write_file()
