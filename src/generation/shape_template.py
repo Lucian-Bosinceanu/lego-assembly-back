@@ -3,6 +3,9 @@ class ShapeTemplate:
         self.template = template
 
     def respects_template(self, cube_list, ids, matrix):
+        if len(self.template) != len(cube_list):
+            return False
+
         for start_cube in cube_list:
             if self.is_shape(start_cube, matrix, ids):
                 return True

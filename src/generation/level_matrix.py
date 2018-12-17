@@ -28,9 +28,9 @@ class LevelMatrix:
 
     def pick_random_cube(self):
         random.seed(datetime.now())
-
         pos_x = random.randrange(0, len(self.matrix))
         pos_y = random.randrange(0, len(self.matrix[0]))
+
         return pos_x, pos_y
 
     def at(self, x, y):
@@ -100,7 +100,7 @@ class LevelMatrix:
 
         for i in self.matrix:
             for j in self.matrix[i]:
-                if self.matrix[i][j] == cube_id:
+                if self.matrix[i][j] == cube_id and (i, j) not in rez:
                     rez.append((i, j))
 
         return rez
