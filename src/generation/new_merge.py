@@ -21,7 +21,7 @@ def merge_test(shapes):
     ]
 
     POPULATION_SIZE = 10
-    GENERATION_COUNT = 1
+    GENERATION_COUNT = 10
 
     for level in levels:
         matrix = shapes.get_level_matrix(level)
@@ -29,6 +29,8 @@ def merge_test(shapes):
 
         for generation in range(0, GENERATION_COUNT):
             print("\n\n", "GENERATION: ", generation)
+            pop.crossover_population()
+            pop.select_population_for_next_generation(POPULATION_SIZE)
             pop.print_population()
             # TO DO:
             # new chromosomes creation
@@ -40,4 +42,4 @@ def merge_test(shapes):
         for i in best:
             for j in best:
                 shapes.cubes[i][level][j].id = best[i][j]
-                print(shapes.cubes[i][level][j].id)
+                # print(shapes.cubes[i][level][j].id)
