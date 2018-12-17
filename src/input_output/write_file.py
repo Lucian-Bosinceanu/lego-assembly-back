@@ -3,7 +3,7 @@ import sys
 import os
 
 from collections import OrderedDict
-from cubedata import CubeData
+from .cubedata import *
 
 def write_file(cubes):
   #import the standard pieces  
@@ -23,37 +23,39 @@ def write_file(cubes):
     dictionary[key].sort(key=lambda x: (x[1],x[2],x[0]))
   usedPieces= dict()
   usedPieces['pieces']=[]
+  dictionary2= dict()
   #iterate through the dictionary and find the standard pieces we use in the sculpture
   for key in dictionary:
       v=key.split('-')
-      if len(v)==2:
-       x,y,z=dictionary[key][0]
-       dic= {'x': 0, 'y':0,'z':0}
-       coord= list()
-       coord.append(dic)
-       rotation=''
-       for i in range(1,len(dictionary[key])):
+      x,y,z=dictionary[key][0]
+      dic= {'x': 0, 'y':0,'z':0}
+      coord= list()
+      coord.append(dic)
+      rotation=''
+      a=0
+      c=0
+      for i in range(1,len(dictionary[key])):
           a=abs(int(x)-int(dictionary[key][i][0]))
           b=abs(int(y)-int(dictionary[key][i][1]))
           c=abs(int(z)-int(dictionary[key][i][2]))
           dic={'x':a,'y':b,'z':c}
           coord.append(dic)
-       if(a<c):
-         rotation="90"
-       else:
-         rotation="0"
-       for piece in range(0,len(standardPieces["pieces"])):
-           if(coord == standardPieces["pieces"][piece]["structure"]):
-              if(standardPieces["pieces"][piece] not in usedPieces["pieces"]):
-                usedPieces['pieces'].append(standardPieces["pieces"][piece])   
-              dictionary[key+'-'+standardPieces["pieces"][piece]["name"]+'-'+rotation] = dictionary.pop(key)
+      if(a<c):
+        rotation="90"
+      else:
+        rotation="0"
+      for piece in range(0,len(standardPieces["pieces"])):
+          if(coord == standardPieces["pieces"][piece]["structure"]):
+            if(standardPieces["pieces"][piece] not in usedPieces["pieces"]):
+              usedPieces['pieces'].append(standardPieces["pieces"][piece])   
+            dictionary2[key+'-'+standardPieces["pieces"][piece]["name"]+'-'+rotation] = dictionary[key]
               
  #sort the tuples by y,x,z to get the coordonates of the piece 
-  for key in dictionary:
-    dictionary[key].sort(key=lambda x: (x[1],x[0],x[2]))
+  for key in dictionary2:
+    dictionary2[key].sort(key=lambda x: (x[1],x[0],x[2]))
 
  #sort the dictionary to build the sculpture bottom-up
-  newDictionary= OrderedDict(sorted(dictionary.items(), key=lambda x: x[1][0]))
+  newDictionary= OrderedDict(sorted(dictionary2.items(), key=lambda x: x[1][0]))
   dictionary=dict(newDictionary)  
   
   orderPieces= dict()
