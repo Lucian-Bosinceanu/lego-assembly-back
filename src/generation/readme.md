@@ -32,8 +32,14 @@ After each iteration we will be choosing 2 best fit chromosome to merge and remo
 (we will apply natural selection concept or a process that is better known as crossover population)
 *Crossover* algorithm will be done follows:
 1. Pick the 2 best fit chromosome then: 
-    1.1 Pick a random brick from the first chromosome and add him and all merged neighbours with it to the new chromosome
-    1.2 Add all the left pieces from the second chromosome to the newly created chromosome
+  * Pick a random brick from the first chromosome and add him and all merged neighbours with it to the new chromosome
+  * Add all the left pieces from the second chromosome to the newly created chromosome
 2. Remove the worst fit chromosomes so we have the same population size
 
 The crossover process will be followed by a selection of individuals for next iteration and be repeated for GENERATION_COUNT times
+
+# Implementation details
+## `LevelMatrix` 
+Contains info about current level matrix and handles merging of the bricks on the current level matrix
+## `Chromosome` 
+Contains info about one candidate solution, building algorithm described earlier should be found inside `build` method
