@@ -21,9 +21,7 @@ if __name__ == "__main__":
 
     done = graph_validation(graph.connections, limit)
 
-    output = convert_graph(graph)
-    print(output)
-    # write_file(output)
+    write_file(shape)
 
     print(done)
     # while not done:                                          # while the final structure still isn't right
