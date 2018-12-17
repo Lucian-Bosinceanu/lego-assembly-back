@@ -20,13 +20,12 @@ def merge_test(shapes):
         ShapeTemplate([(1, 0), (0, 0)]),
     ]
 
-    POPULATION_SIZE = 7
-    GENERATION_COUNT = 10
+    POPULATION_SIZE = 10
+    GENERATION_COUNT = 1
 
     for level in levels:
         matrix = shapes.get_level_matrix(level)
-        level_matrix = LevelMatrix(matrix, known_shapes)
-        pop = Population(POPULATION_SIZE, level_matrix)
+        pop = Population(POPULATION_SIZE, matrix, known_shapes)
 
         for generation in range(0, GENERATION_COUNT):
             print("\n\n", "GENERATION: ", generation)

@@ -6,7 +6,8 @@ class Chromosome:
         self.matrix = matrix
 
     def print_chromosome(self):
-        print("Fitness: ", self.fitness(), "Matrix: ", self.matrix.print_matrix())
+        print("Fitness:", self.fitness(), "Matrix:")
+        self.matrix.print_matrix()
 
     def fitness(self):
         shapes = self.matrix.get_shapes()

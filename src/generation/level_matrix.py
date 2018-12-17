@@ -1,11 +1,11 @@
 import random
 from datetime import datetime
 import src.generation.shape_template
-
+import copy
 
 class LevelMatrix:
     def __init__(self, matrix, known_shapes):
-        self.matrix = matrix.copy()
+        self.matrix = copy.deepcopy(matrix)
         self.directions = ((-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1))
         self.known_shapes = known_shapes
 
@@ -27,7 +27,6 @@ class LevelMatrix:
         return shapes
 
     def pick_random_cube(self):
-        random.seed(datetime.now())
         pos_x = random.randrange(0, len(self.matrix))
         pos_y = random.randrange(0, len(self.matrix[0]))
 
