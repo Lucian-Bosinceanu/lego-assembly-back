@@ -31,3 +31,21 @@ class Model:
     def get_cube_at(self, coord: Tuple[int, int, int]) -> cube:
         return self.cubes[coord[0]][coord[1]][coord[2]]
 
+    def get_levels(self):
+        rez = []
+
+        for x in self.cubes:
+            for y in self.cubes[x]:
+                rez.append(y)
+
+        return sorted(set(rez))
+
+    def get_level_matrix(self, level):
+        matrix = dict()
+        for x in self.cubes:
+            for z in self.cubes[x][level]:
+                if z not in matrix:
+                    matrix[z] = dict()
+                matrix[z][x] = self.cubes[x][level][z].id
+
+        return matrix
