@@ -2,7 +2,6 @@ import math
 from typing import Tuple
 import src.input_output.cubedata as cube
 
-
 class Model:
     def __init__(self, cubes):
         self.cubes = cubes
@@ -31,3 +30,4 @@ class Model:
 
     def get_cube_at(self, coord: Tuple[int, int, int]) -> cube:
         return self.cubes[coord[0]][coord[1]][coord[2]]
+
