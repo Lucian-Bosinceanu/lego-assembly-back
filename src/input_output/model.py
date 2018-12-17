@@ -2,7 +2,6 @@ import math
 from typing import Tuple
 import src.input_output.cubedata as cube
 
-
 class Model:
     def __init__(self, cubes):
         self.cubes = cubes
