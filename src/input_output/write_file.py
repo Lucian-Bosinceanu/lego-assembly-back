@@ -5,12 +5,14 @@ import os
 from collections import OrderedDict
 from .cubedata import *
 
-def write_file(cubes):
+
+def write_file(shape):
   #import the standard pieces  
   with open("scLego.json", 'r') as file:
     standardPieces = json.load(file)
   #create a new dictionary where the key is the id + color and the value is a tuple of coordinates
-  dictionary= dict()
+  dictionary = dict()
+  cubes = shape.cubes
   for x in cubes:
      for y in cubes[x]:
         for z in cubes[x][y]:
@@ -18,7 +20,7 @@ def write_file(cubes):
               dictionary[str(cubes[x][y][z].id)+'-'+cubes[x][y][z].color].append((x,y,z))  
           else:
               dictionary[str(cubes[x][y][z].id)+'-'+cubes[x][y][z].color]=[(x,y,z)]
-  #sort the tuples by y,z,x            
+  # sort the tuples by y,z,x
   for key in dictionary:
     dictionary[key].sort(key=lambda x: (x[1],x[2],x[0]))
   usedPieces= dict()
