@@ -22,6 +22,11 @@ class Chromosome:
         return self.matrix.get_matrix()
 
     def build(self):
+        ## pick_random -> pick next
+        ## keep track of picked cubes
+        ## so that we do not pick same cube over and over again
+        ## or pick in order.
         while self.matrix.is_merge_possible():
-            cube_lin, cube_col = self.matrix.pick_random_cube()
-            self.matrix.merge_cube_with_neighbor(cube_lin, cube_col)
+            for lin in self.matrix.matrix:
+                for col in self.matrix.matrix[lin]:
+                    self.matrix.try_merge(lin, col)

@@ -27,10 +27,10 @@ class LevelMatrix:
         return shapes
 
     def pick_random_cube(self):
-        pos_x = random.randrange(0, len(self.matrix))
-        pos_y = random.randrange(0, len(self.matrix[0]))
+        lin = random.randrange(0, len(self.matrix))
+        col = random.randrange(0, len(self.matrix[0]))
 
-        return pos_x, pos_y
+        return lin, col
 
     def at(self, x, y):
         return self.matrix[x][y]
@@ -40,8 +40,8 @@ class LevelMatrix:
 
     def can_be_merged(self, cube_lin, cube_col):
         for i in range(0, len(self.directions)):
-            nx, ny = self.get_neighbor_in_direction(self.directions[i], cube_lin, cube_col)
-            if self.can_merge(cube_lin, cube_col, nx, ny):
+            n_lin, n_col = self.get_neighbor_in_direction(self.directions[i], cube_lin, cube_col)
+            if self.can_merge(cube_lin, cube_col, n_lin, n_col):
                 return True
 
         return False
@@ -81,7 +81,7 @@ class LevelMatrix:
             self.get_neighbor_in_direction(self.directions[index], cube_lin, cube_col)
         return index, neighbor_x, neighbor_y
 
-    def merge_cube_with_neighbor(self, cube_lin, cube_col):
+    def try_merge(self, cube_lin, cube_col):
         neighbor_lin, neighbor_col = self.chose_neighbor(cube_lin, cube_col)
 
         if self.in_matrix(neighbor_lin, neighbor_col):
