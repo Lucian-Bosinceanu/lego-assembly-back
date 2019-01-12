@@ -17,9 +17,9 @@ if __name__ == "__main__":
     graph = None
     merge_test(shape)
     print(shape)
-    # graph = graph_creation(shape)
+    graph = graph_creation(shape)
 
-    # done = graph_validation(graph.connections, limit)
+    done = graph_validation(graph.connections, limit)
 
     write_file(shape)
 
