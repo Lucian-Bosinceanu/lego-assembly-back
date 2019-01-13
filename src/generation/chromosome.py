@@ -23,5 +23,6 @@ class Chromosome:
 
     def build(self):
         while self.matrix.is_merge_possible():
-            cube_lin, cube_col = self.matrix.pick_random_cube()
-            self.matrix.merge_cube_with_neighbor(cube_lin, cube_col)
+            for lin in self.matrix.matrix:
+                for col in self.matrix.matrix[lin]:
+                    self.matrix.try_merge(lin, col)

@@ -1,11 +1,3 @@
-#2 Repeat for T iterations
-    # evaluate population
-    # crossover population
-    # mutate population
-    # select individuals for next iteration
-
-from src.generation.chromosome import *
-from src.generation.level_matrix import *
 from src.generation.shape_template import *
 from src.generation.population import *
 
@@ -26,9 +18,12 @@ def merge_test(shapes):
     for level in levels:
         matrix = shapes.get_level_matrix(level)
         pop = Population(POPULATION_SIZE, matrix, known_shapes)
+        if len(matrix) == 1:
+            continue
 
         for generation in range(0, GENERATION_COUNT):
             print("\n\n", "GENERATION: ", generation)
+
             pop.crossover_population()
             pop.select_population_for_next_generation(POPULATION_SIZE)
             pop.print_population()
@@ -40,6 +35,5 @@ def merge_test(shapes):
 
         best = pop.best_solution().get_solution()
         for i in best:
-            for j in best:
-                shapes.cubes[i][level][j].id = best[i][j]
-                # print(shapes.cubes[i][level][j].id)
+            for j in best[i]:
+                shapes.cubes[j][level][i].id = best[i][j]

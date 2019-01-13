@@ -38,46 +38,47 @@ class Population:
 
         return self.population[best_index]
     
-    def addFromTo(self, matrix, destMatrix, i, j):
+    @staticmethod
+    def add_from_to(matrix, dest_matrix, i, j):
         p_id = matrix[i][j]
         # -1 gol
         can_add = True
-        for i in range(len(matrix)):
-            line = matrix[i]
-            for j in range(len(line)):
-                if line[j] == p_id and destMatrix[i][j] != -1: can_add = False
+        for i in matrix:
+            for j in matrix[i]:
+                if matrix[i][j] == p_id and dest_matrix[i][j] != -1:
+                    can_add = False
         
-        if can_add == True:
-            for i in range(len(matrix)):
-                line = matrix[i]
-                for j in range(len(line)):
-                    if line[j] == p_id:
-                        destMatrix[i][j] = p_id
+        if can_add:
+            for i in matrix:
+                for j in matrix[i]:
+                    if matrix[i][j] == p_id:
+                        dest_matrix[i][j] = p_id
         return can_add
     
     def init_matrix(self):
-        chrom = self.population[0].get_solution()
-        new_chrom = {}
+        chromosome = self.population[0].get_solution()
+        new_chromosome = {}
         
-        for i in range(len(chrom)):
+        for i in range(len(chromosome)):
             new_line = {}
-            line = chrom[i]
+            line = chromosome[i]
             for j in range(len(line)):
                 new_line[j] = -1
-            new_chrom[i] = new_line
+            new_chromosome[i] = new_line
 
-        return new_chrom
+        return new_chromosome
     
-    def by_fitness(self, chromosome):
+    @staticmethod
+    def by_fitness(chromosome):
         return chromosome.fitness()
     
-    def select_population_for_next_generation(self, MAX_POPULATION):
+    def select_population_for_next_generation(self, max_population):
         self.population.sort(key=self.by_fitness)
-        self.population = self.population[0:MAX_POPULATION]
+        self.population = self.population[0:max_population]
     
-    def cross_chromosomes(self, chrom1, chrom2):
-        matrix1 = chrom1.get_solution()
-        matrix2 = chrom2.get_solution()
+    def cross_chromosomes(self, chromosome_1, chromosome_2):
+        matrix1 = chromosome_1.get_solution()
+        matrix2 = chromosome_2.get_solution()
 
         no_moves = 0
         new_matrix = self.init_matrix()
@@ -86,20 +87,28 @@ class Population:
             x = random.randrange(0, len(matrix1))
             y = random.randrange(0, len(matrix1[0]))
 
-            if mat < 0.5: copy_from = matrix1
-            else: copy_from = matrix2
-            
-            if self.addFromTo(copy_from, new_matrix, x, y) == True:
+            if mat < 0.5:
+                copy_from = matrix1
+            else:
+                copy_from = matrix2
+
+            if x not in copy_from or y not in copy_from[x]:
+                continue
+
+            if self.add_from_to(copy_from, new_matrix, x, y):
                 no_moves = 0
-            else: no_moves += 1
+            else:
+                no_moves += 1
             
-            if no_moves >= 10: break
+            if no_moves >= 10:
+                break
         
         max_id = 0
         for i in range(len(new_matrix)):
             line = new_matrix[i]
             for j in range(len(line)):
-                if line[j] > max_id: max_id = line[j]
+                if line[j] > max_id:
+                    max_id = line[j]
 
         for i in range(len(new_matrix)):
             line = new_matrix[i]
@@ -110,7 +119,6 @@ class Population:
 
         return Chromosome(LevelMatrix(new_matrix, self.known_shapes)) 
 
-
     def crossover_population(self):
         # 2 cate 2, avem random o sansa de a face cross intre cei 2 curenti si facem sau nu
         # 1/2 3/4 5/6
@@ -118,6 +126,6 @@ class Population:
             current = self.population[i]
             prev = self.population[i - 1]
             prob = random.random()
-            if (prob < self.pCross):
-                newChrom = self.cross_chromosomes(prev, current)
-                self.population.append(newChrom)
+            if prob < self.pCross:
+                new_chromosome = self.cross_chromosomes(prev, current)
+                self.population.append(new_chromosome)
