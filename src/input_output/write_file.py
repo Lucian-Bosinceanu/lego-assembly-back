@@ -67,15 +67,16 @@ def write_file(shape):
   for key in dictionary:
       v=key.split('-')
       output=dict()
-      output["piece-name"]=v[2]
+      output["name"]=v[2]
       poz=dict()
       poz["x"]=dictionary[key][0][0]
       poz["y"]=dictionary[key][0][1]
       poz["z"]=dictionary[key][0][2]
       output["position"]=poz
-      orderPieces['order'].append(output)
       output["rotation"]=v[3]
       output["color"]=v[1]
+      orderPieces['order'].append(output)
+
 
  #union of the first two dictionaries 
   usedPieces.update(orderPieces)
