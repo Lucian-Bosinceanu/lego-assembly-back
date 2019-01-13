@@ -59,10 +59,9 @@ class Population:
         chromosome = self.population[0].get_solution()
         new_chromosome = {}
         
-        for i in range(len(chromosome)):
+        for i in chromosome:
             new_line = {}
-            line = chromosome[i]
-            for j in range(len(line)):
+            for j in chromosome[i]:
                 new_line[j] = -1
             new_chromosome[i] = new_line
 
@@ -84,8 +83,9 @@ class Population:
         new_matrix = self.init_matrix()
         while True:
             mat = random.random()
-            x = random.randrange(0, len(matrix1))
-            y = random.randrange(0, len(matrix1[0]))
+
+            x = random.choice(list(matrix1.keys()))
+            y = random.randrange(0, len(matrix1[x]))
 
             if mat < 0.5:
                 copy_from = matrix1
@@ -104,18 +104,16 @@ class Population:
                 break
         
         max_id = 0
-        for i in range(len(new_matrix)):
-            line = new_matrix[i]
-            for j in range(len(line)):
-                if line[j] > max_id:
-                    max_id = line[j]
+        for i in new_matrix:
+            for j in new_matrix[i]:
+                if new_matrix[i][j] > max_id:
+                    max_id = new_matrix[i][j]
 
-        for i in range(len(new_matrix)):
-            line = new_matrix[i]
-            for j in range(len(line)):
-                if line[j] == -1:
+        for i in new_matrix:
+            for j in new_matrix[i]:
+                if new_matrix[i][j] == -1:
                     max_id += 1
-                    line[j] = max_id
+                    new_matrix[i][j] = max_id
 
         return Chromosome(LevelMatrix(new_matrix, self.known_shapes)) 
 

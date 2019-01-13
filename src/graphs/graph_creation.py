@@ -6,20 +6,22 @@ from collections import defaultdict
 #   - check neighbours for all cubes (position i j k-1 in merged object for each cube of each piece)
 #   - add neighbours to list (by id)
 
+
 def graph_creation(merged):
+    connections = defaultdict(set)
 
-    connections = defaultdict(list)
+    for x in merged.cubes:
+        for y in merged.cubes[x]:
+            if y - 1 in merged.cubes[x]:
+                for z in merged.cubes[x][y]:
+                    if z not in merged.cubes[x][y-1]:
+                        continue
+                    cube_id = merged.cubes[x][y][z].id
+                    adjacent_id = merged.cubes[x][y-1][z].id
+                    connections[cube_id].add(adjacent_id)
+                    connections[adjacent_id].add(cube_id)
 
-    for i in merged.cubes:
-        for j in merged.cubes[i]:
-            for k in merged.cubes[i][j]:
-                id = merged.cubes[i][j][k].id
-                if id not in connections.keys():
-                    try:
-                        connections[id].append(merged.cubes[i][j][k - 1].id)
-                    except:
-                        pass
-
-    # print(str(connections.keys()) + " " + str(connections.items()))
+    for key in connections.keys():
+        print(key, ":", connections[key])
 
     return Graph(merged.cubes, connections)
