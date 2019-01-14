@@ -58,6 +58,9 @@ def graph_validation(connections, limit):
         return True
     return False
 
+def shape_has_one_level(shape) -> bool:
+    return True if len(shape.get_levels()) == 1 else False
+
 # modelGraph = {
 #     1: {1, 2, 3, 9},
 #     2: {1, 4, 9},
