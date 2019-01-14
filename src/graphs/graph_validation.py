@@ -10,6 +10,7 @@
 
 
 def graph_validation(connections, limit):
+    if (connections.items()): return False      # we don't accept empty graphs
     connectionsKeys = list(connections)
 
     def DFS(startingNode, ignore = -1):
