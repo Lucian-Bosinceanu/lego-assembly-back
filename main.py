@@ -14,14 +14,21 @@ if __name__ == "__main__":
 
     done = False
     limit = 3                                               # limit is the maximum number of weak points admitted in the graph
+    max_attempts = 30
+    attempts = 0
     graph = None
 
-    while not done:                                         # while the final structure still isn't right
-        if algorithm == "genetic": merge_test(shape)       # merge the input from file, creating a basic lego structure
+    while not done and attempts < max_attempts:             # while the final structure still isn't right
+        if algorithm == "genetic": merge_test(shape)        # merge the input from file, creating a basic lego structure
         else: merge_cubes(shape)                            # merge the input using the greedy algorithm
         graph = graph_creation(shape)                       # remove weak articulation points, merge eventual subgraphs
         done = graph_validation(graph.connections, limit)   # if graph is stable, we can stop
-
-    write_file(shape)
-    print("Output generation completed")
-    exit()
+        attempts += 1
+    
+    if (attempts == max_attempts and not done):
+        print("Output generation failed!")
+        exit()
+    else:
+        write_file(shape)
+        print("Output generation completed after", attempts, "attempts.")
+        exit()
