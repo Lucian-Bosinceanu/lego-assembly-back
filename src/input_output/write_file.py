@@ -29,25 +29,17 @@ def write_file(shape):
   #iterate through the dictionary and find the standard pieces we use in the sculpture
   for key in dictionary:
       v=key.split('-')
-      x,y,z=dictionary[key][0]
-      dic= {'x': 0, 'y':0,'z':0}
-      coord= list()
-      coord.append(dic)
       rotation=''
-      a=0
-      c=0
-      for i in range(1,len(dictionary[key])):
-          a=abs(int(x)-int(dictionary[key][i][0]))
-          b=abs(int(y)-int(dictionary[key][i][1]))
-          c=abs(int(z)-int(dictionary[key][i][2]))
-          dic={'x':a,'y':b,'z':c}
-          coord.append(dic)
-      if(a<c):
+      xDifference=abs(int(dictionary[key][0][0])-int(dictionary[key][len(dictionary[key])-1][0]))+1
+      zDifference=abs(int(dictionary[key][0][2])-int(dictionary[key][len(dictionary[key])-1][2]))+1
+      if(xDifference<zDifference):
         rotation="90"
+        name=str(xDifference)+"x"+str(zDifference)
       else:
         rotation="0"
+        name=str(zDifference)+"x"+str(xDifference)
       for piece in range(0,len(standardPieces["pieces"])):
-          if(coord == standardPieces["pieces"][piece]["structure"]):
+          if(name == standardPieces["pieces"][piece]["name"]):
             if(standardPieces["pieces"][piece] not in usedPieces["pieces"]):
               usedPieces['pieces'].append(standardPieces["pieces"][piece])   
             dictionary2[key+'-'+standardPieces["pieces"][piece]["name"]+'-'+rotation] = dictionary[key]
