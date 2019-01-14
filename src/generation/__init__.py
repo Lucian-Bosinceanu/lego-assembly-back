@@ -1,3 +1,3 @@
-from .merge_cubes import merge_cubes
+from .merge import merge_cubes
 
 __all__ = ["merge_cubes"]
