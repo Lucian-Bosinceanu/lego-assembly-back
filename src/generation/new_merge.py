@@ -54,7 +54,7 @@ def merge_test(shapes):
     for level in levels:
         matrix = shapes.get_level_matrix(level)
         pop = Population(POPULATION_SIZE, matrix, known_shapes)
-        if len(matrix) == 1:
+        if len(matrix) < 3:
             continue
 
         for generation in range(0, GENERATION_COUNT):

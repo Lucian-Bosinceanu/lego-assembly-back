@@ -24,11 +24,7 @@ if __name__ == "__main__":
         graph = graph_creation(shape)                                                   # remove weak articulation points, merge eventual subgraphs
         done = graph_validation(graph.connections, limit) or shape_has_one_level(shape) # if graph is stable or shape has only 1 level, we can stop
         attempts += 1
-    
-    if (attempts == max_attempts and not done):
-        print("Output generation failed!")
-        exit()
-    else:
-        write_file(shape)
-        print("Output generation completed after", attempts, "attempts.")
-        exit()
+
+    write_file(shape)
+    print("File generation completed")
+
